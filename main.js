@@ -20,9 +20,57 @@ numberCell();
 function rand(){
     let x = Math.floor((Math.random() * 16));
     number[x].innerHTML='2';
-    arr[x]=+2;
+    arr[x]=+2;    
 }
 rand();
+
+//перекрашиваем ячейки
+function colour(){     
+     for(let i=0;i<16;i++) {
+       let elem = number[i]; 
+         if(elem.textContent==" "){
+            elem.style.backgroundColor = "#dedede";
+         }   
+         else if (elem.textContent=="2") {
+            elem.style.backgroundColor="yellow";
+         }
+         else if (elem.textContent=="4") {
+           elem.style.backgroundColor="lightgreen";
+         }
+         else if (elem.textContent=="8") {
+           elem.style.backgroundColor="lightblue";
+         }
+         else if (elem.textContent=="16") {
+           elem.style.backgroundColor="peach";
+         }
+         else if (elem.textContent=="32") {
+           elem.style.backgroundColor="green";
+         }
+         else if (elem.textContent=="64") {
+           elem.style.backgroundColor="red";
+         }
+         else if (elem.textContent=="128") {
+           elem.style.backgroundColor="pinck";
+         }
+         else if (elem.textContent=="256") {
+           elem.style.backgroundColor="#f15";
+         }
+         else if (elem.textContent=="512") {
+           elem.style.backgroundColor="#f05";
+         }
+         else if (elem.textContent=="1024") {
+           elem.style.backgroundColor="#e00";
+         }
+         else if (elem.textContent=="2048") {
+           elem.style.backgroundColor="#dedede";
+         }
+         else
+         {
+         elem.style.backgroundColor="#dedede"; 
+         }
+     }
+}colour();
+
 
 //суммируем строки
 function rowSumUp(){
@@ -44,6 +92,7 @@ btnUp.addEventListener('click',function (){
     numberCell();     
     rowSumUp(); 
     rand();
+    colour();
 });
 btnRight.addEventListener('click',function (){
     numberCell();
