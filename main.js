@@ -1,4 +1,4 @@
-let arr=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+let arr=['','','','','','','','','','','','','','','',''];
 let btnUp=document.querySelector('.btnUp');
 let btnRight=document.querySelector('.btnRight');
 let btnLeft=document.querySelector('.btnLeft');
@@ -10,7 +10,7 @@ let x;
 //считываем значение с ячеек
 function numberCell(){    
     for(let i=0; i<number.length; i++){       
-        arr[i]===+number[i].innerText;                        
+        +arr[i]===+number[i].innerText;                        
     } 
     return arr;   
 }
@@ -19,8 +19,10 @@ numberCell();
 //выбираем случайный номер ячейки
 function rand(){
     let x = Math.floor((Math.random() * 16));
-    number[x].innerHTML='2';
-    arr[x]=+2;    
+    if(number[x].innerHTML==''){
+      number[x].innerHTML='2';
+      arr[x]=+2;  
+    }      
 }
 rand();
 
@@ -73,10 +75,21 @@ function colour(){
 
 
 //суммируем строки
+let b;
 function rowSumUp(){
     for (let i=0; i<4; i++){
-       let b=arr[i]+arr[i+4]+arr[i+8]+arr[i+12];
+      // if(+arr[i]==+arr[i+4]){
+      //   b=+arr[i]+ +arr[i+4];
+      //   number[i].innerHTML=b;
+      //   number[i+4].innerHTML=+arr[i+8];
+      //   number[i+8].innerHTML=+arr[i+12];
+      // }
+       b=+arr[i]+ +arr[i+4]+ +arr[i+8]+ +arr[i+12];
        number[i].innerHTML=b;
+       if(b==0){
+        number[i].innerHTML=''; 
+       }
+       console.log(b); 
     }
     for(i=4; i<16; i++){
         number[i].innerHTML='';
@@ -90,19 +103,22 @@ function columnSum(){
 
 btnUp.addEventListener('click',function (){
     numberCell();     
-    rowSumUp(); 
+    rowSumUp();    
     rand();
     colour();
 });
 btnRight.addEventListener('click',function (){
     numberCell();
-    rand();   
+    rand();
+    colour();   
 });
 btnLeft.addEventListener('click',function (){
     numberCell();
     rand();
+    colour();
 });
 btnDown.addEventListener('click',function (){
     numberCell();
     rand();
+    colour();
 });
